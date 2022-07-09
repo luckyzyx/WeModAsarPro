@@ -1,0 +1,62 @@
+
+name: CrackPro
+
+on:
+  push:
+    paths: 
+      - '*.asar'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 签出$GITHUB_WORKSPACE下的存储库，以便您的作业可以访问它
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          check-latest: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+        
+      - name: Install Asar Module
+        run: |
+          npm install --engine-strict asar
+          
+      - name: Unpack AsarFile
+        run: |
+          asar e app.asar unpack
+          
+      - name: Crack Pro
+        env: 
+          version: default
+        run: |
+          import json
+          path="Unpack/package.json"
+          js = json.load(open(path,'r',encoding='utf-8'))
+          print(js["version"])
+          $version = js["version"]
+          echo $version
+
+          str1='if(this.account.subscription){return"pro"}return null}'
+          str1fix='if(true){return"pro"}return null}'
+          str2='!account.subscription'
+          str2fix='false'
+          with open(r'test/app-bundle.js', 'r',encoding='UTF-8') as file:
+            data = file.read()
+            data = data.replace(str1, str1fix)
+            data = data.replace(str2, str2fix)
+          with open(r'test/app-bundle.js', 'w',encoding='UTF-8') as file:
+            file.write(data)
+            
+      - name: Repack Asar
+        run: |
+          asar p  unpack app_crack.asar
+
+          
