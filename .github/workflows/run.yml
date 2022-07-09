@@ -33,6 +33,7 @@ jobs:
         run: |
           ls
           npm ls
+          cd /home/runner/work/WeModAsarPro/WeModAsarPro
           asar e app.asar unpack
           
       - name: Crack Pro
