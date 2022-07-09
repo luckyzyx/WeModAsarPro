@@ -27,10 +27,7 @@ jobs:
         
       - name: Install Asar Module
         run: |
-          npm install -g asar
-          
-      - name: Unpack AsarFile
-        run: |
+          npm install --location=global asar
           ls
           npm ls
           asar e app.asar unpack
@@ -40,7 +37,7 @@ jobs:
           version: default
         run: |
           import json
-          path="actions/setup-node@main/unpack/package.json"
+          path="unpack/package.json"
           js = json.load(open(path,'r',encoding='utf-8'))
           print(js["version"])
           $version = js["version"]
@@ -50,15 +47,15 @@ jobs:
           str1fix='if(true){return"pro"}return null}'
           str2='!account.subscription'
           str2fix='false'
-          with open(r'actions/setup-node@main/unpack/output/app-bundle.js', 'r',encoding='UTF-8') as file:
+          with open(r'unpack/output/app-bundle.js', 'r',encoding='UTF-8') as file:
             data = file.read()
             data = data.replace(str1, str1fix)
             data = data.replace(str2, str2fix)
-          with open(r'actions/setup-node@main/unpack/output/app-bundle.js', 'w',encoding='UTF-8') as file:
+          with open(r'unpack/output/app-bundle.js', 'w',encoding='UTF-8') as file:
             file.write(data)
             
       - name: Repack Asar
         run: |
-          asar p actions/setup-node@main/unpack actions/setup-node@main/app_crack.asar
+          asar p unpack app_crack.asar
 
           
