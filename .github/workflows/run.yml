@@ -27,7 +27,7 @@ jobs:
         
       - name: Install Asar Module
         run: |
-          npm install
+          npm install -g asar
           
       - name: Unpack AsarFile
         run: |
