@@ -27,7 +27,7 @@ jobs:
         
       - name: Install Asar Module
         run: |
-          npm install --engine-strict asar
+          npm install
           
       - name: Unpack AsarFile
         run: |
