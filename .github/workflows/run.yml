@@ -27,13 +27,12 @@ jobs:
         
       - name: Install Asar Module
         run: |
-          npm install
+          npm install -g asar
           
       - name: Unpack AsarFile
         run: |
           ls
           npm ls
-          cd /home/runner/work/WeModAsarPro/WeModAsarPro
           asar e app.asar unpack
           
       - name: Crack Pro
