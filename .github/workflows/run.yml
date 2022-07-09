@@ -32,6 +32,7 @@ jobs:
       - name: Unpack AsarFile
         run: |
           ls
+          npm ls
           asar e app.asar unpack
           
       - name: Crack Pro
