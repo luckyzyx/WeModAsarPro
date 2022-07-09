@@ -31,7 +31,8 @@ jobs:
           
       - name: Unpack AsarFile
         run: |
-          asar e actions/setup-node@main/app.asar actions/setup-node@main/unpack
+          ls
+          asar e app.asar unpack
           
       - name: Crack Pro
         env: 
