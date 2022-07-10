@@ -33,18 +33,21 @@ jobs:
           
       - name: Crack Pro
         env: 
-          version: default
+          version: 0
         run: |
-          python replacestr.py
+          python replacestr.py > $version
+          echo $version
             
       - name: Repack Asar
         run: |
          asar p unpack app_crack.asar
+         rm -rf unpack
           
       - name: Upload AsarCrack
         uses: actions/upload-artifact@v3
         with:
           name: app_crack.zip
           path: app_crack.asar
-
+          
+#     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
           
