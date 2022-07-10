@@ -35,7 +35,7 @@ jobs:
         env: 
           VERSION: 0
         run: |
-          echo $(python replacestr.py} > $VERSION
+          echo $(python replacestr.py) > $VERSION
           echo $VERSION
         shell: pwsh
             
