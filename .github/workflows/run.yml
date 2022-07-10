@@ -6,17 +6,19 @@ on:
     paths: 
       - '*.asar'
   workflow_dispatch:
+  
+permissions: read-all
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           check-latest: false
 
       - name: Set up Python
@@ -26,9 +28,9 @@ jobs:
         
       - name: Install Asar Module
         run: |
-          npm install --engine-strict asar
-          npm ls
-          npx asar e app.asar unpack
+          npm install -g asar
+          asar e app.asar unpack
+        shell: cmd
           
       - name: Crack Pro
         env: 
@@ -46,18 +48,20 @@ jobs:
           str2='!account.subscription'
           str2fix='false'
           filename="unpack/output/app-bundle.js"
-          with open(r'$filename', 'r',encoding='UTF-8') as file:
+          with open(r'$filename', 'r', encoding='UTF-8') as file:
             data = file.read()
             data = data.replace(str1, str1fix)
             data = data.replace(str2, str2fix)
-          with open(r'$filename', 'w',encoding='UTF-8') as file:
+          with open(r'$filename', 'w', encoding='UTF-8') as file:
             file.write(data)
+        shell: python
             
       - name: Repack Asar
         run: |
-          npx asar p unpack app_crack.asar
+         asar p unpack app_crack.asar
+        shell: cmd
           
-      - name: Upload Asar File
+      - name: Upload AsarCrack
         uses: actions/upload-artifact@v3
         with:
           name: app_crack_file 
