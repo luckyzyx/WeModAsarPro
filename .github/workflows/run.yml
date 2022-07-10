@@ -35,7 +35,8 @@ jobs:
         env: 
           version: 0
         run: |
-          echo "{version}={python replacestr.py}" >> $GITHUB_ENV
+          $ver = python replacestr.py
+          echo "{version}={$ver}" >> $GITHUB_ENV
           echo $version
             
       - name: Repack Asar
