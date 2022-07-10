@@ -30,7 +30,6 @@ jobs:
         run: |
           npm install -g asar
           asar e app.asar unpack
-          ls
         shell: pwsh {0}
           
       - name: Crack Pro
@@ -46,7 +45,7 @@ jobs:
       - name: Upload AsarCrack
         uses: actions/upload-artifact@v3
         with:
-          name: app_crack_file 
+          name: app_crack.zip
           path: app_crack.asar
 
           
