@@ -27,6 +27,7 @@ jobs:
         
       - name: Install Asar Module
         run: |
+          cd ${{ github.workspace }}
           npm install asar
           npm ls
           asar e app.asar unpack
