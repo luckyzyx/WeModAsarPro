@@ -31,7 +31,7 @@ jobs:
           npm install -g asar
           asar e app.asar unpack
           ls
-        shell: cmd
+        shell: pwsh {0}
           
       - name: Crack Pro
         env: 
@@ -42,7 +42,6 @@ jobs:
       - name: Repack Asar
         run: |
          asar p unpack app_crack.asar
-        shell: cmd
           
       - name: Upload AsarCrack
         uses: actions/upload-artifact@v3
