@@ -33,12 +33,10 @@ jobs:
           
       - name: Crack Pro
         env: 
-          version: 0
+          VERSION: 0
         run: |
-          
-          echo "{version}={$(python replacestr.py)}" >> $GITHUB_ENV
-          echo ${env.version}
-          env
+          echo $(python replacestr.py} > $VERSION
+          echo $VERSION
         shell: pwsh
             
       - name: Repack Asar
@@ -52,5 +50,4 @@ jobs:
           name: app_crack.zip
           path: app_crack.asar
           
-#     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
           
