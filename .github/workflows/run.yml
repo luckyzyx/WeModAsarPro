@@ -28,7 +28,8 @@ jobs:
         run: |
           npm install -g asar
           asar e app.asar unpack
-          asar
+          ls
+        shell: pwsh {0}
           
       - name: Crack Pro
         env: 
