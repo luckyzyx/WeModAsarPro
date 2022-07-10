@@ -11,7 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - shell:  bash
       - uses: actions/checkout@v3
 
       - name: Set up Node.js
@@ -61,6 +60,7 @@ jobs:
       - name: Upload Asar File
         uses: actions/upload-artifact@v3
         with:
+          name: app_crack_file 
           path: app_crack.asar
 
           
