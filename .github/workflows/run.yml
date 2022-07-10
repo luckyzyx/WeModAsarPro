@@ -26,10 +26,8 @@ jobs:
           python-version: "3.10"
         
       - name: Install Asar Module
-        env: 
-          path: ${{ github.workspace }}
         run: |
-          npm install -g asar
+          npm install --location=global asar
           npm ls
           asar e app.asar unpack
           
