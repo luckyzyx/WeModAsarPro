@@ -28,7 +28,8 @@ jobs:
         
       - name: Install Asar Module
         run: |
-          npm ci
+          npm install -g asar
+          npm config ls
           asar e app.asar unpack
           
       - name: Crack Pro
