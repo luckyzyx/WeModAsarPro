@@ -17,8 +17,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          check-latest: true
+          node-version: 14
+          check-latest: false
 
       - name: Set up Python
         uses: actions/setup-python@v3
