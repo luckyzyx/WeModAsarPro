@@ -21,6 +21,9 @@ with open(filename,'r',encoding='UTF-8') as file:
 	data = file.read()
 	data = data.replace(str1, str1fix)
 	data = data.replace(str2, str2fix)
+	data = data.replace(str3, str3fix)
+	data = data.replace(str4, str4fix)
+	data = data.replace(str5, str5fix)
 with open(filename,'w',encoding='UTF-8') as file:
 	file.write(data)
 	file.close
