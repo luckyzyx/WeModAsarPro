@@ -29,7 +29,8 @@ jobs:
         env: 
           path: ${{ github.workspace }}
         run: |
-          npm install --location=global asar
+          npm install -g asar
+          npm ls
           asar e app.asar unpack
           
       - name: Crack Pro
