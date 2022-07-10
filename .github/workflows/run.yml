@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       # 签出$GITHUB_WORKSPACE下的存储库，以便您的作业可以访问它
       - uses: actions/checkout@v3
