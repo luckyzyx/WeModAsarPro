@@ -26,19 +26,21 @@ jobs:
           python-version: "3.10"
         
       - name: Install Asar Module
+        env: 
+          path: ${{ github.workspace }}
         run: |
           npm install --location=global asar
           ls
           npm ls
-          asar e app.asar unpack
+          asar e $path/app.asar $path/unpack
           
       - name: Crack Pro
         env: 
           version: default
         run: |
           import json
-          path="unpack/package.json"
-          js = json.load(open(path,'r',encoding='utf-8'))
+          dir="$path/unpack/package.json"
+          js = json.load(open($dir,'r',encoding='utf-8'))
           print(js["version"])
           $version = js["version"]
           echo $version
@@ -47,15 +49,16 @@ jobs:
           str1fix='if(true){return"pro"}return null}'
           str2='!account.subscription'
           str2fix='false'
-          with open(r'unpack/output/app-bundle.js', 'r',encoding='UTF-8') as file:
+          filename="$path/unpack/output/app-bundle.js"
+          with open(r'$filename', 'r',encoding='UTF-8') as file:
             data = file.read()
             data = data.replace(str1, str1fix)
             data = data.replace(str2, str2fix)
-          with open(r'unpack/output/app-bundle.js', 'w',encoding='UTF-8') as file:
+          with open(r'$filename', 'w',encoding='UTF-8') as file:
             file.write(data)
             
       - name: Repack Asar
         run: |
-          asar p unpack app_crack.asar
+          asar p $path/unpack $path/app_crack.asar
 
           
