@@ -35,14 +35,12 @@ jobs:
         env: 
           VERSION: 0
         run: |
-          echo $(python replacestr.py) > $VERSION
-          echo $VERSION
+          echo $(python replacestr.py)
         shell: pwsh
             
       - name: Repack Asar
         run: |
          asar p unpack app_crack.asar
-         rm -rf unpack
           
       - name: Upload AsarCrack
         uses: actions/upload-artifact@v3
